@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-HK" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090a0c">
+  <title>陳志森 Sam — 多媒體運營 / 視覺設計 / JDDMADE 作品集</title>
+  <style>
+    :root{
+      --bg:#090a0c; --panel:#111317; --panel-2:#15181d; --line:#252a31;
+      --text:#f4f6f8; --muted:#98a1ad; --blue:#5cc8ff; --blue-2:#2f80ff;
+      --red:#ff5b5b; --green:#64e3b2; --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.6;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.026) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.026) 1px,transparent 1px);background-size:40px 40px;mask-image:linear-gradient(to bottom,black,transparent 65%);z-index:-2}
+    body:after{content:"";position:fixed;top:-20vh;right:-8vw;width:42vw;height:42vw;border-radius:50%;background:radial-gradient(circle,rgba(47,128,255,.12),transparent 65%);filter:blur(15px);pointer-events:none;z-index:-1}
+    a{color:inherit;text-decoration:none;transition:.2s}
+    .wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+    .mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+    .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:800}
+    .muted{color:var(--muted)}
+    .progress{position:fixed;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--blue-2),var(--blue));z-index:100}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(9,10,12,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
+    .nav-inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand-mark{width:36px;height:36px;border:1px solid rgba(92,200,255,.5);border-radius:11px;display:grid;place-items:center;background:linear-gradient(145deg,#121820,#0b0d11);font-weight:900;color:var(--blue);box-shadow:inset 0 0 20px rgba(92,200,255,.08)}
+    .brand-copy{min-width:0}.brand-name{font-weight:800;letter-spacing:.02em}.brand-sub{font-size:11px;color:var(--muted);white-space:nowrap}
+    .nav-links{display:flex;gap:26px;font-size:13px;color:#c8ced6}.nav-links a{position:relative}.nav-links a:after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:1px;background:var(--blue);transition:.25s}.nav-links a:hover{color:white}.nav-links a:hover:after{right:0}
+    .nav-cta{padding:9px 14px;border:1px solid #35404c;border-radius:10px;font-size:12px;font-weight:800;background:#101419}.nav-cta:hover{border-color:var(--blue);color:var(--blue)}
+    
+    .hero{padding:150px 0 92px;position:relative}
+    .hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:58px;align-items:end}
+    .hero h1{font-size:clamp(45px,7vw,88px);line-height:.98;letter-spacing:-.055em;margin:18px 0 24px;max-width:800px}
+    .hero h1 span{display:block;color:#aeb8c4}.hero h1 .accent{color:white}.hero h1 .accent b{color:var(--blue);font-weight:900}
+    .hero-copy{font-size:17px;line-height:1.8;color:#b7c0cb;max-width:720px}.hero-copy strong{color:white}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;gap:9px;border-radius:11px;padding:12px 17px;font-weight:800;font-size:13px;border:1px solid #343c47;transition:.25s}
+    .btn-primary{background:#f4f6f8;color:#090a0c;border-color:#f4f6f8}.btn-primary:hover{transform:translateY(-2px);background:var(--blue);border-color:var(--blue)}
+    .btn-ghost{background:rgba(255,255,255,.02)}.btn-ghost:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}.tag{font-size:11px;color:#b4bec9;padding:7px 10px;border:1px solid #2b3139;border-radius:9px;background:rgba(255,255,255,.02)}
+    
+    .hero-panel{border:1px solid #2b3139;background:linear-gradient(145deg,rgba(20,24,30,.92),rgba(12,14,17,.96));padding:24px;border-radius:18px;position:relative;overflow:hidden}
+    .hero-panel:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 45%,rgba(92,200,255,.05),transparent 70%)}
+    .panel-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:13px}
+    .live{display:inline-flex;align-items:center;gap:7px;font-size:10px;color:var(--green);font-weight:800;letter-spacing:.12em}
+    .live:before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 10px rgba(100,227,178,.7)}
+    .hero-kpi{font-size:58px;line-height:1;font-weight:900;letter-spacing:-.05em;margin:28px 0 8px}.hero-kpi span{color:var(--blue)}
+    .hero-kpi-label{font-size:13px;color:#bec6d0}.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px}
+    .hero-stat{border-top:1px solid var(--line);padding-top:13px}.hero-stat b{display:block;font-size:20px}.hero-stat span{font-size:10px;color:var(--muted)}
+    
+    section{padding:90px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:34px}
+    .section-head h2{font-size:32px;line-height:1.1;margin:7px 0 0;letter-spacing:-.03em}
+    .section-head p{max-width:520px;margin:0;color:var(--muted);font-size:13.5px;line-height:1.7}
+    
+    .numbers{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .number{padding:24px 18px;border-right:1px solid var(--line)}.number:last-child{border-right:0}
+    .number b{font-size:36px;letter-spacing:-.04em;color:#fff}.number span{display:block;color:var(--blue);font-weight:700;font-size:11px;margin-top:4px}
+    .number small{display:block;margin-top:10px;color:var(--muted);font-size:11px;line-height:1.5}
+    
+    .real-work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .real-work-card{border:1px solid var(--line);border-radius:18px;background:linear-gradient(150deg,#11151a,#0d0f12);overflow:hidden;transition:.3s;display:flex;flex-direction:column}
+    .real-work-card:hover{transform:translateY(-4px);border-color:#465260;box-shadow:0 22px 50px rgba(0,0,0,.28)}
+    .embed-stage{background:#050607;min-height:560px;display:grid;place-items:center;padding:12px}
+    .embed-stage.tiktok{min-height:590px;padding:14px}
+    .embed-stage.tiktok iframe{width:100%;height:560px;max-width:325px;border:0;border-radius:12px;background:#0b0d10}
+    .embed-stage.facebook{min-height:420px;padding:0}
+    .embed-stage.facebook iframe{width:100%;height:420px;border:0}
+    .embed-stage.thread{min-height:420px;padding:24px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#0f1216,#0a0c0f)}
+    
+    .thread-proof{width:100%;height:100%;border:1px solid #2a3038;border-radius:16px;padding:26px;background:#0c0f13;display:flex;flex-direction:column;justify-content:space-between}
+    .thread-logo{font-size:11px;font-weight:900;letter-spacing:.14em;color:var(--blue)}
+    .thread-title{font-size:26px;line-height:1.12;letter-spacing:-.03em;margin:18px 0 12px;font-weight:800}
+    .thread-copy{font-size:12.5px;color:#a9b3be;line-height:1.75}
+    .thread-metric{display:inline-flex;align-self:flex-start;margin-top:18px;padding:7px 12px;border:1px solid #37404b;border-radius:999px;font-size:10px;font-weight:800;color:#dce3ea;background:rgba(255,255,255,.03)}
+    
+    .work-body{padding:22px;display:flex;flex-direction:column;flex:1}
+    .work-meta{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px}
+    .work-platform{font-size:10px;font-weight:900;letter-spacing:.12em;color:#abb5c0}
+    .work-metric{font-size:11px;font-weight:900;color:var(--blue)}
+    .work-body h3{font-size:19px;line-height:1.3;margin:0 0 8px}
+    .work-body p{font-size:12.5px;line-height:1.75;color:var(--muted);margin:0;flex:1}
+    .work-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+    .work-tag{font-size:9.5px;color:#b7c0ca;border:1px solid #2f363f;border-radius:999px;padding:4px 9px;background:rgba(255,255,255,.015)}
+    .work-actions{display:flex;gap:10px;margin-top:18px}
+    .work-actions a{font-size:11px;font-weight:800;padding:9px 13px;border-radius:9px;border:1px solid #313a44}
+    .work-actions a.primary{border-color:rgba(92,200,255,.45);color:var(--blue);background:#0d151c}
+    .work-actions a.primary:hover{background:var(--blue);color:#090a0c}
+    
+    .proof-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+    .proof-strip .proof{padding:12px 10px;border:1px solid var(--line);border-radius:11px;background:#090b0e}
+    .proof b{display:block;font-size:18px;color:#fff}.proof span{display:block;color:var(--muted);font-size:9.5px;margin-top:2px}
+    
+    .platforms{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .platform{border:1px solid var(--line);border-radius:16px;padding:22px;background:#0f1216;transition:.25s}
+    .platform:hover{border-color:#3b4552}
+    .platform-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+    .platform-name{font-weight:900;font-size:17px}
+    .platform-mark{font-size:10px;color:var(--blue);letter-spacing:.1em;padding:4px 8px;border:1px solid rgba(92,200,255,.25);border-radius:6px;background:rgba(92,200,255,.05)}
+    .platform-mark:hover{background:var(--blue);color:#090a0c}
+    .platform-main{font-size:42px;line-height:1;font-weight:900;letter-spacing:-.04em}
+    .platform-main em{font-style:normal;color:var(--blue)}
+    .platform-caption{font-size:11.5px;color:var(--muted);margin-top:6px}
+    .mini-list{margin-top:20px;border-top:1px solid var(--line)}
+    .mini-row{display:flex;justify-content:space-between;gap:15px;padding:11px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+    .mini-row span{color:var(--muted)}.mini-row b{font-weight:800}
+    
+    .method{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+    .method-card{border:1px solid var(--line);border-radius:18px;padding:28px;background:#0f1216}
+    .method-list{margin-top:18px}
+    .method-item{display:grid;grid-template-columns:38px 1fr;gap:15px;padding:17px 0;border-bottom:1px solid var(--line)}
+    .method-item:last-child{border-bottom:0}
+    .step{font-family:monospace;color:var(--blue);font-size:13px;font-weight:700;padding-top:2px}
+    .method-item h3{font-size:16px;margin:0 0 5px}
+    .method-item p{font-size:12px;color:var(--muted);margin:0;line-height:1.75}
+    .quote{height:100%;min-height:100%;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#161c23,#0c0f13)}
+    .quote-mark{font-size:64px;line-height:.7;color:var(--blue)}
+    .quote p{font-size:28px;line-height:1.35;letter-spacing:-.03em;margin:30px 0}
+    .quote .rule{width:42px;height:2px;background:var(--blue)}
+    
+    .profile{display:grid;grid-template-columns:1fr 340px;gap:22px}
+    .profile-main,.contact-card{border:1px solid var(--line);border-radius:18px;background:#0f1216}
+    .profile-main{padding:32px}
+    .profile-name{font-size:36px;line-height:1.1;margin:9px 0 14px;font-weight:900}
+    .profile-role{font-size:12px;color:var(--blue);font-weight:900;letter-spacing:.12em}
+    .profile-copy{max-width:740px;color:#b8c0ca;font-size:13.5px;line-height:1.9;margin:0}
+    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+    .skill{font-size:11px;border:1px solid #303842;padding:7px 11px;border-radius:8px;color:#c6ced7;background:rgba(255,255,255,.02)}
+    .contact-card{padding:26px;display:flex;flex-direction:column;justify-content:space-between}
+    .contact-card h3{margin:8px 0 18px;font-size:20px;line-height:1.35}
+    .contact-line{padding:11px 0;border-top:1px solid var(--line);font-size:12px}
+    .contact-line span{display:block;color:var(--muted);font-size:10px;letter-spacing:.08em;margin-bottom:2px}
+    .contact-btn{display:flex;justify-content:center;align-items:center;margin-top:18px;background:white;color:#0a0b0d;border-radius:10px;padding:12px;font-size:12px;font-weight:900}
+    .contact-btn:hover{background:var(--blue)}
+    
+    footer{border-top:1px solid var(--line);padding:26px 0 40px}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:11px;color:#68717d}
+    .footer-links{display:flex;gap:18px}
+    .footer-links a:hover{color:var(--blue)}
+    
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.show{opacity:1;transform:none}
+    
+    @media (max-width:900px){
+      .nav-links{display:none}
+      .hero-grid,.method,.profile{grid-template-columns:1fr}
+      .hero-panel{max-width:680px}
+      .numbers{grid-template-columns:repeat(2,1fr)}
+      .number:nth-child(2){border-right:0}
+      .number:nth-child(n+3){border-top:1px solid var(--line)}
+      .platforms,.real-work-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:600px){
+      .wrap{width:min(var(--max),calc(100% - 24px))}
+      .nav-inner{height:62px}.brand-sub{display:none}
+      .hero{padding-top:118px;padding-bottom:54px}.hero h1{font-size:46px}.hero-copy{font-size:14.5px}
+      .section-head{display:block}.section-head p{margin-top:12px}
+      .numbers{display:grid;grid-template-columns:1fr 1fr}.number{padding:18px 12px}.number b{font-size:26px}
+      .quote p{font-size:24px}.profile-name{font-size:30px}.footer-inner{flex-direction:column;align-items:flex-start}
+      .embed-stage.tiktok{min-height:575px}.embed-stage.tiktok iframe{height:545px}
+      .embed-stage.facebook iframe{height:360px}.embed-stage.facebook{min-height:360px}
+      .embed-stage.thread{min-height:360px}
+      .proof-strip{gap:7px}.proof-strip .proof{padding:10px}.proof b{font-size:16px}
+    }
+    @media print{
+      .nav,.progress,.hero-actions,.nav-cta,footer{display:none!important}
+      body{background:white;color:#111}
+      .hero,section{padding:35px 0}.wrap{width:100%}
+      .hero-grid,.method,.profile,.platforms{grid-template-columns:1fr 1fr}
+      .platform,.method-card,.profile-main,.contact-card,.hero-panel,.real-work-card{background:white!important;border-color:#ddd!important;box-shadow:none!important}
+      .muted,.hero-copy,.profile-copy,.mini-row span,.work-body p{color:#444!important}
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="回到首頁">
+        <div class="brand-mark">J</div>
+        <div class="brand-copy">
+          <div class="brand-name">陳志森 Sam</div>
+          <div class="brand-sub">MULTIMEDIA / VISUAL DESIGN / CONTENT GROWTH</div>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="主選單">
+        <a href="#data">數據表現</a>
+        <a href="#work">精選作品</a>
+        <a href="#platforms">平台矩陣</a>
+        <a href="#method">工作方法</a>
+        <a href="#profile">關於我</a>
+      </nav>
+      <a class="nav-cta" href="mailto:mo62087121@hotmail.com">CONTACT ↗</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">JDDMADE / MULTIMEDIA PORTFOLIO</div>
+          <h1><span>汽車文化 ×</span><span class="accent">視覺內容 × <b>自然增長</b></span></h1>
+          <p class="hero-copy">我將汽車文化、商業視覺設計與社群演算法整合進同一套工作流：從<strong>選題策劃、高對比視覺排版、短影音剪輯</strong>到<strong>跨平台數據洞察</strong>，以實戰作品與真實流量構建品牌影響力。</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#work">瀏覽精選作品 ↓</a>
+            <a class="btn btn-ghost" href="https://www.tiktok.com/@jddmade" target="_blank" rel="noopener">TikTok (@jddmade) ↗</a>
+            <a class="btn btn-ghost" href="https://www.facebook.com/p/Jdd-Made-100092490001186/" target="_blank" rel="noopener">Facebook ↗</a>
+            <a class="btn btn-ghost" href="https://www.threads.com/@jdd_made" target="_blank" rel="noopener">Threads ↗</a>
+          </div>
+          <div class="hero-meta">
+            <span class="tag">暨南大學 · 計算機科學與技術學士</span>
+            <span class="tag">JDDMADE 品牌主理與內容營運</span>
+            <span class="tag">澳門 / 珠海</span>
+          </div>
+        </div>
+        <aside class="hero-panel reveal">
+          <div class="panel-head">
+            <span class="eyebrow" style="color:#b5bfca">RECENT GROWTH</span>
+            <span class="live">ORGANIC METRICS</span>
+          </div>
+          <div class="hero-kpi">4.66<span>M</span></div>
+          <div class="hero-kpi-label">Facebook 過去 60 天自然觸及瀏覽</div>
+          <div class="hero-stats">
+            <div class="hero-stat"><b>+503%</b><span>瀏覽量增長</span></div>
+            <div class="hero-stat"><b>+527%</b><span>互動率增長</span></div>
+            <div class="hero-stat"><b>+18,044</b><span>淨增追蹤</span></div>
+          </div>
+          <div style="margin-top:20px;font-size:10px;color:#6f7883" class="mono">SOURCE: META BUSINESS SUITE / 60D WINDOW</div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="data">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">01 / VERIFIED IMPACT</div>
+            <h2>以真實數據驗證內容決策。</h2>
+          </div>
+          <p>不依賴付費廣告投放，純粹透過視覺鈎子（Visual Hook）、版式節奏與演算法推薦機制，在三大社群平台實現千萬級自然曝光。</p>
+        </div>
+        <div class="numbers reveal">
+          <div class="number">
+            <b>44.7M</b>
+            <span>TikTok · 365 天累計播放</span>
+            <small>240 萬+ 點讚 · 10.61 萬次分享 · 88.5% 來自 For You 推薦流</small>
+          </div>
+          <div class="number">
+            <b>4.66M</b>
+            <span>Facebook · 60 天自然瀏覽</span>
+            <small>352,196 次總互動 · 淨增 18,044 名專頁追蹤者</small>
+          </div>
+          <div class="number">
+            <b>826K</b>
+            <span>Facebook · 單支爆款短影音</span>
+            <small>54,412 次互動 · 累計自然觀看時長達 62 天 1 小時</small>
+          </div>
+          <div class="number">
+            <b>430K+</b>
+            <span>Threads · 7 天社群瀏覽</span>
+            <small>28,000+ 深度互動 · R34 單篇圖文創下 315K 自然瀏覽</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">02 / SELECTED WORK</div>
+            <h2>跨平台實戰作品集</h2>
+          </div>
+          <p>以下直接嵌入 JDDMADE 於 TikTok、Facebook 及 Threads 發布之高表現原創內容。支援頁面內直接預覽互動，亦可點擊跳轉至各平台查閱原始貼文與評論區反饋。</p>
+        </div>
+
+        <div class="real-work-grid">
+          <article class="real-work-card reveal">
+            <div class="embed-stage tiktok">
+              <iframe src="https://www.tiktok.com/player/v1/7609784308059933983?controls=1&description=1&music_info=1" allow="fullscreen" loading="lazy" title="JDDMADE TikTok photo post 7609784308059933983"></iframe>
+            </div>
+            <div class="work-body">
+              <div class="work-meta"><span class="work-platform">TIKTOK · CAROUSEL POST</span><span class="work-metric">@JDDMADE</span></div>
+              <h3>JDM 視覺圖文企劃 / 車型特徵拆解</h3>
+              <p>針對行動端滑動閱讀習慣設計的高對比圖文。透過首圖強烈的車燈與前臉視覺錨點提升停留率，帶動高比例收藏與轉發。</p>
+              <div class="work-tags"><span class="work-tag">VISUAL DESIGN</span><span class="work-tag">CAR CULTURE</span><span class="work-tag">HIGH RETENTION</span></div>
+              <div class="work-actions"><a class="primary" href="https://www.tiktok.com/@jddmade/photo/7609784308059933983?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener">查看 TikTok 原帖 ↗</a></div>
+            </div>
+          </article>
+
+          <article class="real-work-card reveal">
+            <div class="embed-stage tiktok">
+              <iframe src="https://www.tiktok.com/player/v1/7631764188506918175?controls=1&description=1&music_info=1" allow="fullscreen" loading="lazy" title="JDDMADE TikTok photo post 7631764188506918175"></iframe>
+            </div>
+            <div class="work-body">
+              <div class="work-meta"><span class="work-platform">TIKTOK · EDITORIAL GRAPHIC</span><span class="work-metric">@JDDMADE</span></div>
+              <h3>Editorial 雜誌感排版 / 汽車文化科普</h3>
+              <p>將硬核車型知識、年份代號與日式 Editorial 字體編排結合，建立清晰的信息層級，降低受眾理解門檻並強化品牌專業調性。</p>
+              <div class="work-tags"><span class="work-tag">EDITORIAL LAYOUT</span><span class="work-tag">TYPOGRAPHY</span><span class="work-tag">INFO ARCHITECTURE</span></div>
+              <div class="work-actions"><a class="primary" href="https://www.tiktok.com/@jddmade/photo/7631764188506918175?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener">查看 TikTok 原帖 ↗</a></div>
+            </div>
+          </article>
+
+          <article class="real-work-card reveal">
+            <div class="embed-stage tiktok">
+              <iframe src="https://www.tiktok.com/player/v1/7596147339379756318?controls=1&description=1&music_info=1" allow="fullscreen" loading="lazy" title="JDDMADE TikTok photo post 7596147339379756318"></iframe>
+            </div>
+            <div class="work-body">
+              <div class="work-meta"><span class="work-platform">TIKTOK · SERIES CONTENT</span><span class="work-metric">@JDDMADE</span></div>
+              <h3>系列化視覺模板 / 品牌識別系統</h3>
+              <p>建立標準化的色彩管理與版面網格系統，確保帳號在維持高頻率更新的同時，具備高度統一的商業視覺識別度。</p>
+              <div class="work-tags"><span class="work-tag">BRAND SYSTEM</span><span class="work-tag">JDM AESTHETICS</span><span class="work-tag">CONTENT MATRIX</span></div>
+              <div class="work-actions"><a class="primary" href="https://www.tiktok.com/@jddmade/photo/7596147339379756318?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener">查看 TikTok 原帖 ↗</a></div>
+            </div>
+          </article>
+
+          <article class="real-work-card reveal">
+            <div class="embed-stage facebook">
+              <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1010621358143366&show_text=false&autoplay=false" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen loading="lazy" title="JDDMADE Facebook Reel 1010621358143366"></iframe>
+            </div>
+            <div class="work-body">
+              <div class="work-meta"><span class="work-platform">FACEBOOK · REELS VIDEO</span><span class="work-metric">JDD-MADE</span></div>
+              <h3>高完播率短影音 / 節奏剪輯與氛圍調色</h3>
+              <p>針對 Facebook Reels 演算法優化前 3 秒黃金視覺鈎子，配合音樂卡點、光影調色與畫面張力，大幅拉升平均觀看時長與自然分享率。</p>
+              <div class="work-tags"><span class="work-tag">SHORT-FORM VIDEO</span><span class="work-tag">COLOR GRADING</span><span class="work-tag">VIRAL REELS</span></div>
+              <div class="work-actions"><a class="primary" href="https://www.facebook.com/reel/1010621358143366" target="_blank" rel="noopener">觀看 Facebook 原片 ↗</a></div>
+            </div>
+          </article>
+
+          <article class="real-work-card reveal">
+            <div class="embed-stage thread">
+              <div class="thread-proof">
+                <div>
+                  <div class="thread-logo">THREADS / @JDD_MADE</div>
+                  <div class="thread-title">NISSAN SKYLINE R34<br>話題引爆與社群裂變</div>
+                  <div class="thread-copy">聚焦經典 JDM 車型 R34 之視覺與話題切入點，單篇貼文在無推廣狀態下達成 31.5 萬次自然瀏覽，成功引爆車迷評論區深度互動與轉發。</div>
+                </div>
+                <div class="thread-metric">315,000+ ORGANIC VIEWS · 單篇爆發</div>
+              </div>
+            </div>
+            <div class="work-body">
+              <div class="work-meta"><span class="work-platform">THREADS · VIRAL TOPIC</span><span class="work-metric">315K VIEWS</span></div>
+              <h3>社群話題策劃 / 高互動圖文傳播</h3>
+              <p>精準捕捉核心車迷群體的共鳴點，透過具備討論空間的圖文編排激發用戶留言（UGC），帶動帳號在 7 天內斬獲逾 43 萬次曝光。</p>
+              <div class="work-tags"><span class="work-tag">COMMUNITY GROWTH</span><span class="work-tag">SKYLINE R34</span><span class="work-tag">ORGANIC VIRAL</span></div>
+              <div class="work-actions"><a class="primary" href="https://www.threads.com/@jdd_made/post/DeB2bUqk1FF?xmt=AQG0hpc85J0vTMjbr9o5N1ny6RXZvkIfBl8Gn0FKGM3wGg" target="_blank" rel="noopener">查看 Threads 原帖 ↗</a></div>
+            </div>
+          </article>
+
+          <article class="real-work-card reveal">
+            <div class="embed-stage thread">
+              <div class="thread-proof">
+                <div>
+                  <div class="thread-logo">FULL-FUNNEL SYSTEM</div>
+                  <div class="thread-title">從視覺創意到商業轉化的全鏈路閉環</div>
+                  <div class="thread-copy">JDDMADE 不僅是單純的內容展示帳號，更是一套經過市場驗證的「視覺吸引 → 演算法放大 → 社群沉澱」跨平台多媒體運營系統。</div>
+                </div>
+                <div class="proof-strip">
+                  <div class="proof"><b>44.7M</b><span>TikTok 播放</span></div>
+                  <div class="proof"><b>4.66M</b><span>FB 60天瀏覽</span></div>
+                  <div class="proof"><b>60K+</b><span>全網總粉絲</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="work-body">
+              <div class="work-meta"><span class="work-platform">CROSS-PLATFORM SYNERGY</span><span class="work-metric">OMNICHANNEL</span></div>
+              <h3>一套核心資產，多平台差異化分發</h3>
+              <p>將同一主題素材依據各平台受眾習慣進行二次封裝：TikTok 主攻視覺衝擊與推薦流、Facebook 強化短影音留存、Threads 深化社群討論度。</p>
+              <div class="work-tags"><span class="work-tag">CONTENT OPS</span><span class="work-tag">MULTI-PLATFORM</span><span class="work-tag">DATA DRIVEN</span></div>
+              <div class="work-actions"><a class="primary" href="#platforms">查看平台數據拆解 ↓</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="platforms">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">03 / PLATFORM MATRIX</div>
+            <h2>跨平台差異化運營數據</h2>
+          </div>
+          <p>深入理解不同社群平台的演算法權重與受眾行為：TikTok 看重完播與分享、Facebook 講求觀看時長與互動、Threads 則聚焦話題延伸與即時討論。</p>
+        </div>
+        <div class="platforms">
+          <article class="platform reveal">
+            <div class="platform-head">
+              <div class="platform-name">Facebook</div>
+              <a class="platform-mark mono" href="https://www.facebook.com/p/Jdd-Made-100092490001186/" target="_blank" rel="noopener">JDD-MADE ↗</a>
+            </div>
+            <div class="platform-main">4.66<em>M</em></div>
+            <div class="platform-caption">過去 60 天總瀏覽 · 環比增長 ↑503%</div>
+            <div class="mini-list">
+              <div class="mini-row"><span>內容總互動</span><b>352,196 · ↑527%</b></div>
+              <div class="mini-row"><span>60 天淨增追蹤</span><b>+18,044 · ↑296%</b></div>
+              <div class="mini-row"><span>單支短片最高播放</span><b>826,862 次</b></div>
+            </div>
+          </article>
+
+          <article class="platform reveal">
+            <div class="platform-head">
+              <div class="platform-name">TikTok</div>
+              <a class="platform-mark mono" href="https://www.tiktok.com/@jddmade" target="_blank" rel="noopener">@JDDMADE ↗</a>
+            </div>
+            <div class="platform-main">44.7<em>M</em></div>
+            <div class="platform-caption">過去 365 天累計播放 · 43K+ 粉絲</div>
+            <div class="mini-list">
+              <div class="mini-row"><span>累計獲讚數</span><b>2.4M+ (240萬+)</b></div>
+              <div class="mini-row"><span>分享 / 評論數</span><b>106.1K / 14.8K</b></div>
+              <div class="mini-row"><span>For You 推薦流佔比</span><b>88.5%</b></div>
+            </div>
+          </article>
+
+          <article class="platform reveal">
+            <div class="platform-head">
+              <div class="platform-name">Threads</div>
+              <a class="platform-mark mono" href="https://www.threads.com/@jdd_made" target="_blank" rel="noopener">@JDD_MADE ↗</a>
+            </div>
+            <div class="platform-main">430<em>K+</em></div>
+            <div class="platform-caption">過去 7 天總瀏覽 · 高頻社群互動</div>
+            <div class="mini-list">
+              <div class="mini-row"><span>7 天累計互動</span><b>28,000+ 次</b></div>
+              <div class="mini-row"><span>R34 單篇爆發貼文</span><b>315,000+ 瀏覽</b></div>
+              <div class="mini-row"><span>精準垂直粉絲</span><b>1,903 人</b></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">04 / WORKFLOW</div>
+            <h2>系統化的內容生產方法論</h2>
+          </div>
+          <p>將「美學表現」與「流量增長」拆解為可標準化、可複製的執行流程，讓爆款內容不再單憑運氣，而是建立在數據與結構之上。</p>
+        </div>
+        <div class="method">
+          <div class="method-card reveal">
+            <div class="eyebrow">CONTENT PRODUCTION SYSTEM</div>
+            <div class="method-list">
+              <div class="method-item">
+                <div class="step">01</div>
+                <div>
+                  <h3>建立高辨識度視覺錨點（Visual Hook）</h3>
+                  <p>提煉最具辨識度的車型輪廓、改裝燈組光影與高對比色調，在用戶滑動螢幕的前 1.5 秒內鎖定注意力，提升停留率。</p>
+                </div>
+              </div>
+              <div class="method-item">
+                <div class="step">02</div>
+                <div>
+                  <h3>結構化資訊編排（Editorial & Pacing）</h3>
+                  <p>將複雜的汽車文化與機械知識，轉化為契合手機直式螢幕閱讀的巨型字體排版、清晰視覺動線與短影音剪輯節奏，降低受眾認知成本。</p>
+                </div>
+              </div>
+              <div class="method-item">
+                <div class="step">03</div>
+                <div>
+                  <h3>數據洞察與敏捷迭代（Data Analytics）</h3>
+                  <p>持續追蹤後台完播率、分享率與推薦流佔比，快速驗證高轉化選題與版式模型，並將成功經驗規模化複製至跨平台內容矩陣。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="method-card quote reveal">
+            <div>
+              <div class="quote-mark">“</div>
+              <p>Good visuals capture attention.<br><strong>Strong systems make growth repeatable.</strong></p>
+              <div class="rule"></div>
+            </div>
+            <div style="margin-top:35px;font-size:10px;color:#7b8591" class="mono">JDDMADE / VISUAL DESIGN × CONTENT OPS × DATA</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="profile">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">05 / PROFILE</div>
+            <h2>關於我 / 陳志森 Sam</h2>
+          </div>
+          <p>結合計算機工程邏輯與商業視覺美學，專注於多媒體內容製作、視覺傳達設計與社群媒體增長運營。</p>
+        </div>
+        <div class="profile">
+          <div class="profile-main reveal">
+            <div class="profile-role">MULTIMEDIA SPECIALIST / VISUAL DESIGNER</div>
+            <div class="profile-name">陳志森</div>
+            <p class="profile-copy">畢業於暨南大學計算機科學與技術專業（學士）。具備嚴謹的數位工具掌控力與敏銳的商業視覺美感，獨立主理汽車文化自媒體品牌 <strong style="color:white">JDDMADE</strong>。熟悉從<strong style="color:white">選題企劃、平面海報與字體排版、短影音剪輯調色，到跨平台社群運營與數據分析</strong>的全流程作業，能高效產出兼具品牌質感與傳播效益的多媒體內容。</p>
+            <div class="skills">
+              <span class="skill">多媒體內容企劃</span>
+              <span class="skill">商業視覺與海報設計</span>
+              <span class="skill">Editorial 版式設計</span>
+              <span class="skill">短影音剪輯與調色</span>
+              <span class="skill">跨平台社群運營 (TikTok / FB / IG)</span>
+              <span class="skill">數據分析與流量增長</span>
+              <span class="skill">AI 輔助視覺生成工作流</span>
+            </div>
+          </div>
+          <aside class="contact-card reveal">
+            <div>
+              <div class="eyebrow">OPEN TO OPPORTUNITIES</div>
+              <h3><br><span style="color:var(--blue);font-size:14px"></span></h3>
+              <div class="contact-line"><span>EMAIL</span>mo62087121@hotmail.com</div>
+              <div class="contact-line"><span>LOCATION</span>澳門 (Macau) </div>
+              <div class="contact-line"><span>SOCIAL MATRIX</span>TikTok · Facebook · Threads (@jddmade)</div>
+            </div>
+            <a class="contact-btn" href="mailto:mo62087121@hotmail.com">發送郵件聯繫 →</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© 2026 陳志森 (Sam) · JDDMADE Multimedia Portfolio</div>
+      <div class="footer-links">
+        <a href="https://www.tiktok.com/@jddmade" target="_blank" rel="noopener">TikTok ↗</a>
+        <a href="https://www.facebook.com/p/Jdd-Made-100092490001186/" target="_blank" rel="noopener">Facebook ↗</a>
+        <a href="https://www.threads.com/@jdd_made" target="_blank" rel="noopener">Threads ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const progress=document.getElementById('progress');
+    window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;progress.style.width=(h>0?(window.scrollY/h*100):0)+'%'});
+    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
